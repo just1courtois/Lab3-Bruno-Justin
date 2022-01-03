@@ -268,7 +268,7 @@ public class HomePanel extends JFrame{
                         dialog.add(bar);
                         dialog.pack();
                         SendMessage.main(path, bucketName);
-                        isRecieved.main("lab3", destination);
+                        isRecieved.main("outbox", destination);
 
 
 

@@ -20,11 +20,11 @@ public class SendMessage {
 
         message = bucket + " "+ path;
         CreateQueueRequest createQueueRequest = CreateQueueRequest.builder()
-                .queueName("lab3")
+                .queueName("inbox")
                 .build();
         CreateQueueResponse createResult = sqs.createQueue(createQueueRequest);
         GetQueueUrlRequest getQueueRequest = GetQueueUrlRequest.builder()
-                .queueName("lab3")
+                .queueName("inbox")
                 .build();
 
         String queueUrl = sqs.getQueueUrl(getQueueRequest).queueUrl();
