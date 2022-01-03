@@ -150,7 +150,6 @@ public class HomePanel extends JFrame{
             public void actionPerformed(ActionEvent ae) {
 
 
-                hello.setDefaultCloseOperation(hello.EXIT_ON_CLOSE);
 
                 input.setLayout(new GridBagLayout());
                 input.setBorder(new EmptyBorder(50, 50, 50, 50));
