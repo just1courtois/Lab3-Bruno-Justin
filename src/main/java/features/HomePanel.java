@@ -121,6 +121,7 @@ public class HomePanel extends JFrame{
         }
     };
 
+    //the UI of the client in swing
     public static void UI(){
 
         JFrame frame = new JFrame("Client Panel");
@@ -137,6 +138,7 @@ public class HomePanel extends JFrame{
         frame.add(textFieldUserName);*/
         JMenuBar menuBar = new JMenuBar();
 
+        //kind of placholder
         panelFile.add(textLabelFile);
         panelFile.add(textLabelPath);
         panelBucket.add(textLabelBucket);
@@ -146,6 +148,7 @@ public class HomePanel extends JFrame{
 
         JMenu menuFile = new JMenu("File");
         JMenu s3Menu = new JMenu("S3");
+        //run create a bucket
         JMenuItem s3Create = new JMenuItem(new AbstractAction("Create Bucket") {
             public void actionPerformed(ActionEvent ae) {
 
@@ -187,11 +190,15 @@ public class HomePanel extends JFrame{
             }
         });
         JMenuItem selectBucket = new JMenuItem(new AbstractAction("Select bucket") {
+            //make a radio list of all buckets
             public void actionPerformed(ActionEvent ae) {
                 S3ListBuckets.main();
             }
         });
+        //create a button send file
         JMenuItem sendToBucket = new JMenuItem("Send File to Bucket");
+
+        //allow to choose a destination path
         JMenuItem selectPath = new JMenuItem(new AbstractAction("Choose Path") {
             public void actionPerformed(ActionEvent ae) {
                 JFileChooser pathChooser = new JFileChooser();
@@ -214,6 +221,8 @@ public class HomePanel extends JFrame{
                 frame.setVisible(true);
             }
         });
+
+        //open a file chooser for CSV only
         JMenuItem menuFileChoose = new JMenuItem(new AbstractAction("Choose File") {
             public void actionPerformed(ActionEvent ae) {
                 JFileChooser file = new JFileChooser();
@@ -247,7 +256,7 @@ public class HomePanel extends JFrame{
         menuBar.add(s3Menu);
         menuBar.setBackground(Color.ORANGE);
 
-//add button to read info and to clear fields
+//on click, make a progress bar, send file, send message and then lauch the timer in "isRecieved"
         JButton bsend = new JButton(new AbstractAction("Send") {
             public void actionPerformed(ActionEvent ae) {
                 final JDialog dialog = new JDialog(frame, true); // modal

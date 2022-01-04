@@ -1,6 +1,7 @@
 package features;
 
 //import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.ListBucketsRequest;
 import software.amazon.awssdk.services.s3.model.ListBucketsResponse;
@@ -39,7 +40,8 @@ public class S3ListBuckets {
             @Override
             protected Void doInBackground()
             {
-                S3Client s3 = S3Client.builder().build(); //.region(region)
+                Region region = Region.US_WEST_1;
+                S3Client s3 = S3Client.builder().region(region).build(); //.region(region)
 
                 ListBucketsRequest listBucketsRequest = ListBucketsRequest.builder()
                         .build();

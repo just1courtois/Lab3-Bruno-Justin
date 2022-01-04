@@ -35,6 +35,6 @@ public class SendMessage {
                 .delaySeconds(5)
                 .build();
         sqs.sendMessage(sendMsgRequest);
-        System.out.println("message added to queue Lab3");
+        System.out.println("message sent to inbox");
     }
 }

@@ -34,7 +34,7 @@ public class CreateBucket {
             nameYourBucket.setText(bucketName+ " has just been created");
             hello.setVisible(false);
 
-
+        //update the placeholder
         } catch (S3Exception e) {
             System.err.println(e.awsErrorDetails().errorMessage());
             nameYourBucket.removeAll();
@@ -43,7 +43,7 @@ public class CreateBucket {
             hello.setVisible(true);
         }
     }
-
+    //not used
     public static String nameYourBucket() {
         String name = null;
         Scanner input = new Scanner(System.in);  // Create a Scanner object

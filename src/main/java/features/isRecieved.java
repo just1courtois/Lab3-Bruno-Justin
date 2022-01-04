@@ -18,16 +18,21 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class isRecieved {
-    public static void main(String  queueUrl, Path destination){
+    public static void main(String  queueName, Path destination){
         SqsClient sqsClient = SqsClient.builder()
                 .region(Region.US_WEST_1)
                 .build();
+        System.out.println("Retrieving messages");
         Timer timer = new Timer();
-
         timer.schedule( new TimerTask() {
             public void run() {
+                //retrieve the URL of the queue
+                GetQueueUrlRequest getQueueRequest = GetQueueUrlRequest.builder()
+                        .queueName(queueName)
+                        .build();
+                //retrieve the messages
                 ReceiveMessageRequest receiveMessageRequest = ReceiveMessageRequest.builder()
-                        .queueUrl(queueUrl)
+                        .queueUrl(getQueueRequest.toString())
                         .maxNumberOfMessages(5)
                         .build();
                 List<Message> messages = sqsClient.receiveMessage(receiveMessageRequest).messages();
@@ -58,14 +63,17 @@ public class isRecieved {
 
 
         System.out.println("deleting messages");
+        GetQueueUrlRequest getQueueRequest = GetQueueUrlRequest.builder()
+                .queueName(queueName)
+                .build();
         ReceiveMessageRequest receiveMessageRequest = ReceiveMessageRequest.builder()
-                .queueUrl(queueUrl)
+                .queueUrl(getQueueRequest.toString())
                 .maxNumberOfMessages(5)
                 .build();
         List<Message> messages = sqsClient.receiveMessage(receiveMessageRequest).messages();
                 for (Message message : messages) {
                     DeleteMessageRequest deleteMessageRequest = DeleteMessageRequest.builder()
-                            .queueUrl(queueUrl)
+                            .queueUrl(getQueueRequest.toString())
                             .receiptHandle(message.receiptHandle())
                             .build();
                     sqsClient.deleteMessage(deleteMessageRequest);
